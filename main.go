@@ -3,7 +3,7 @@ package main
 import "log"
 
 func main() {
-	s, err := findByID("model.Book")
+	s, err := findByParam("model.Book", "UUID", "string")
 	if err != nil {
 		log.Fatalf("Error: %v", err)
 	}
