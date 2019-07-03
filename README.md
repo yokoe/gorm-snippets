@@ -21,3 +21,7 @@ func findBookByUUID(db *gorm.DB, arg string) (*model.Book, error) {
         return &obj, nil
 }
 ```
+
+## Snippets
+* FindByID
+* FindByParam
