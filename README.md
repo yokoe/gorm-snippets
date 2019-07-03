@@ -3,7 +3,11 @@ Code snippets generator for gorm
 
 ## Usage
 ### Golang
-`s, _ := snippet.FindByParam("model.Book", "UUID", "string")` will generate
+```
+s, _ := snippet.FindByParam("model.Book", "UUID", "string")
+```
+
+will generate
 
 ```
 func findBookByUUID(db *gorm.DB, arg string) (*model.Book, error) {
