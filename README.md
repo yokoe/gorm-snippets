@@ -22,6 +22,9 @@ func findBookByUUID(db *gorm.DB, arg string) (*model.Book, error) {
 }
 ```
 
+### Command line
+TBD
+
 ## Snippets
 * FindByID
 * FindByParam
