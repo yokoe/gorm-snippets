@@ -15,7 +15,7 @@ func findBookByUUID(db *gorm.DB, arg string) (*model.Book, error) {
                 return nil, xerrors.Errorf("UUID must be non-nil.")
         }
         var obj model.Book
-        if err := db.Find(&obj, "`uuid` = ?", arg); err != nil {
+        if err := db.Find(&obj, "`uuid` = ?", arg).Error; err != nil {
                 return nil, xerrors.Errorf("failed to find model.Book by UUID: %w", err)
         }
         return &obj, nil

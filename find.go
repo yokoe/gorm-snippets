@@ -11,7 +11,7 @@ import (
 func FindByID(model string) (string, error) {
 	const body = `func {{ .funcName }}(db *gorm.DB, id int) (*{{ .model }}, error) {
 	var obj {{ .model }}
-	if err := db.First(&obj, id); err != nil {
+	if err := db.Find(&obj, id).Error; err != nil {
 		return nil, xerrors.Errorf("failed to find {{ .model }} with id %v: %w", id, err)
 	}
 	return &obj, nil
@@ -29,7 +29,7 @@ func FindByParam(model string, paramName string, paramType string) (string, erro
 	const body = `func {{ .funcName }}(db *gorm.DB, arg {{ .paramType }}) (*{{ .model }}, error) {
 {{ .argValidation }}
 	var obj {{ .model }}
-	if err := db.Find(&obj, "{{ .condition }}", arg); err != nil {
+	if err := db.Find(&obj, "{{ .condition }}", arg).Error; err != nil {
 		return nil, xerrors.Errorf("failed to find {{ .model }} by {{ .paramName }}: %w", err)
 	}
 	return &obj, nil
