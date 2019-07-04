@@ -7,7 +7,7 @@ import (
 )
 
 func main() {
-	s, err := snippet.FindByParam("model.Book", "UUID", "string")
+	s, err := snippet.BatchFindByID("model.Book")
 	if err != nil {
 		log.Fatalf("Error: %v", err)
 	}
