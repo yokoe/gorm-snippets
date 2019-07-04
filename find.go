@@ -63,7 +63,7 @@ func BatchFindByID(model string) (string, error) {
 	if err := db.Find(&objects, "id in (?)", idSlice).Error; err != nil {
 		return nil, xerrors.Errorf("failed to find {{ .model }} by id slice %v: %w", idSlice, err)
 	}
-	return &objects, nil
+	return objects, nil
 }`
 	modelCmp := strings.Split(model, ".")
 	structName := modelCmp[len(modelCmp)-1]
