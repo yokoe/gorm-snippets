@@ -25,23 +25,27 @@ func TestFindFunctions(t *testing.T) {
 	for _, tt := range tests {
 		t.Run(tt.name, func(t *testing.T) {
 			goldenFile := fmt.Sprintf("./testdata/%s.golden", strcase.ToSnake(tt.name))
+
 			r, err := tt.generateFunc()
 			if err != nil {
 				t.Fatalf("err = %v, want nil", err)
 			}
-			b := []byte(r)
+
+			got := []byte(r)
+
 			if *update {
-				if err := ioutil.WriteFile(goldenFile, b, 0644); err != nil {
+				if err := ioutil.WriteFile(goldenFile, got, 0644); err != nil {
 					t.Fatalf("Failed to update golden file: %+v", err)
 				}
 			}
-			expected, err := ioutil.ReadFile(goldenFile)
+
+			want, err := ioutil.ReadFile(goldenFile)
 			if err != nil {
 				t.Fatalf("Failed to read golden file: %+v", err)
 			}
-			if !bytes.Equal(expected, b) {
-				t.Logf("Expect:\n%v", string(expected))
-				t.Logf("Got:\n%v", string(b))
+			if !bytes.Equal(got, want) {
+				t.Logf("Got:\n%v", string(got))
+				t.Logf("Want:\n%v", string(want))
 				t.Fatal("Result is not same to golden file.")
 			}
 		})
