@@ -7,6 +7,14 @@
       "label": "Update golden files",
       "type": "shell",
       "command": "go test -v ./... -update",
+      "presentation": {
+        "echo": true,
+        "reveal": "always",
+        "focus": true,
+        "panel": "new",
+        "showReuseMessage": false,
+        "clear": true
+      }
     }
   ]
 }
