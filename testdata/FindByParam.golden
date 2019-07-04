@@ -1,0 +1,10 @@
+func findBookByTitle(db *gorm.DB, arg string) (*model.Book, error) {
+	if len(arg) == 0 {
+		return nil, xerrors.Errorf("Title must be non-nil.")
+	}
+	var obj model.Book
+	if err := db.Find(&obj, "`title` = ?", arg).Error; err != nil {
+		return nil, xerrors.Errorf("failed to find model.Book by Title: %w", err)
+	}
+	return &obj, nil
+}

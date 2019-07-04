@@ -1,0 +1,10 @@
+func batchFindBookByID(db *gorm.DB, idSlice []int) ([]*model.Book, error) {
+	if len(idSlice) == 0 {
+		return nil, nil
+	}
+	var objects []*model.Book
+	if err := db.Find(&objects, "id in (?)", idSlice).Error; err != nil {
+		return nil, xerrors.Errorf("failed to find model.Book by id slice %v: %w", idSlice, err)
+	}
+	return objects, nil
+}
