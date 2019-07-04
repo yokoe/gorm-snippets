@@ -31,3 +31,4 @@ TBD
 ## Snippets
 * FindByID
 * FindByParam
+* BatchFindByID
