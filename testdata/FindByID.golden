@@ -1,0 +1,7 @@
+func findBookByID(db *gorm.DB, id int) (*model.Book, error) {
+	var obj model.Book
+	if err := db.Find(&obj, id).Error; err != nil {
+		return nil, xerrors.Errorf("failed to find model.Book with id %v: %w", id, err)
+	}
+	return &obj, nil
+}
