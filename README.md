@@ -1,6 +1,9 @@
 # gorm-snippets
 Code snippets generator for gorm
 
+[![Maintainability](https://api.codeclimate.com/v1/badges/0653c17e31664434a19a/maintainability)](https://codeclimate.com/github/yokoe/gorm-snippets/maintainability)
+[![Test Coverage](https://api.codeclimate.com/v1/badges/0653c17e31664434a19a/test_coverage)](https://codeclimate.com/github/yokoe/gorm-snippets/test_coverage)
+
 ## Usage
 ### Golang
 ```
