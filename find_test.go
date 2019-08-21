@@ -8,7 +8,7 @@ import (
 	"testing"
 
 	"github.com/iancoleman/strcase"
-	"github.com/yokoe/gorm-snippets"
+	snippet "github.com/yokoe/gorm-snippets"
 )
 
 var update = flag.Bool("update", false, "update .golden files")
@@ -21,6 +21,7 @@ func TestFindFunctions(t *testing.T) {
 		{"FindByID", func() (string, error) { return snippet.FindByID("model.Book") }},
 		{"FindByParam", func() (string, error) { return snippet.FindByParam("model.Book", "Title", "string") }},
 		{"BatchFindByID", func() (string, error) { return snippet.BatchFindByID("model.Book") }},
+		{"BatchFindByParam", func() (string, error) { return snippet.BatchFindByParam("model.Book", "Title", "string") }},
 	}
 	for _, tt := range tests {
 		t.Run(tt.name, func(t *testing.T) {

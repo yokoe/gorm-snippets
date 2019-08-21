@@ -1,0 +1,10 @@
+func batchFindBookByTitle(db *gorm.DB, a []string) ([]*model.Book, error) {
+	if len(a) == 0 {
+		return nil, nil
+	}
+	var objects []*model.Book
+	if err := db.Find(&objects, "`title` in (?)", a).Error; err != nil {
+		return nil, xerrors.Errorf("failed to find model.Book by Title slice %v: %w", a, err)
+	}
+	return objects, nil
+}

@@ -72,3 +72,27 @@ func BatchFindByID(model string) (string, error) {
 		"model":    model,
 	})
 }
+
+// BatchFindByParam find objects for every id at once
+func BatchFindByParam(model string, paramName string, paramType string) (string, error) {
+	const body = `func {{ .funcName }}(db *gorm.DB, a []{{ .paramType }}) ([]*{{ .model }}, error) {
+	if len(a) == 0 {
+		return nil, nil
+	}
+	var objects []*{{ .model }}
+	if err := db.Find(&objects, "{{ .condition }}", a).Error; err != nil {
+		return nil, xerrors.Errorf("failed to find {{ .model }} by {{ .paramName }} slice %v: %w", a, err)
+	}
+	return objects, nil
+}`
+	modelCmp := strings.Split(model, ".")
+	structName := modelCmp[len(modelCmp)-1]
+	colName := strcase.ToSnake(paramName)
+	return renderTpl(body, map[string]interface{}{
+		"funcName":  fmt.Sprintf("batchFind%sBy%s", structName, paramName),
+		"model":     model,
+		"condition": fmt.Sprintf("`%s` in (?)", colName),
+		"paramName": paramName,
+		"paramType": paramType,
+	})
+}

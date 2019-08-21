@@ -37,3 +37,4 @@ TBD
 - FindByID
 - FindByParam
 - BatchFindByID
+- BatchFindByParam
